@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        
+        <ui:include src="/modules/menu.xhtml" />
+        
+        <center>
+            <h:form>
+            <div class="card border-primary mb-3" style="max-width: 50rem;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Registrar Automovil</h1>
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                <h:message for="marca" class="alert alert-danger" />
+                                Marca: <h:inputText id="marca" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                <h:message for="modelo" class="alert alert-danger" />
+                                Modelo: <h:inputText  id="modelo" class="form-control" required="true" requiredMessage="Ingresa modelo"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                <h:message for="color" class="alert alert-danger" />
+                                Color: <h:inputText id="color" class="form-control" required="true" requiredMessage="Ingresa color"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                <h:message for="anio" class="alert alert-danger" />
+                                Año: <h:inputText  id="anio"  maxlength="4" class="form-control" validatorMessage=" Año no valido" required="true" requiredMessage="Ingresa year">
+                                                    <f:validateLongRange minimum="1920" maximum="2000" />
+                                                   </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                Clases:
+                                <h:selectOneMenu id="clases" class="form-control">
+                                    <f:selectItem itemValue = "1" itemLabel = "Autobús"/>
+                                    <f:selectItem itemValue = "2" itemLabel = "Automóvil"/>
+                                    <f:selectItem itemValue = "3" itemLabel = "Cabezal"/>
+                                    <f:selectItem itemValue = "4" itemLabel = "Camión"/>
+                                    <f:selectItem itemValue = "5" itemLabel = "Cuadrimoto"/>
+                                    <f:selectItem itemValue = "6" itemLabel = "Microbús"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                <h:message for="placa" class="alert alert-danger" />
+                                Numero de Placa: <h:inputText  id="placa"  maxlength="17"  class="form-control" validatorMessage="numero de placa incorrecto" required="true" requiredMessage="Ingresa numero de placa"> 
+                                                   <f:validateRegex pattern="^[0-9A-Z]{9}$" />
+                                                  </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                <h:message for="chasis" class="alert alert-danger" />
+                                Numero de Chasis: <h:inputText  id="chasis"  maxlength="17"  class="form-control" validatorMessage="numero de chasis incorrecto" required="true" requiredMessage="Ingresa numero de chasis"> 
+                                                    <f:validateRegex pattern="^[0-9A-Z]{17}$" />
+                                                  </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                <h:message for="motor" class="alert alert-danger" />
+                                Numero de Motor: <h:inputText id="motor" maxlength="10" class="form-control" validatorMessage="Numero de motor incorrecta" required="true" requiredMessage="Ingresa numero de motor">
+                                                    <f:validateRegex pattern="^[0-9A-Z]{10}$" />
+                                                 </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-8">
+                                Tipo de Carro:
+                                <h:selectOneMenu id="carro" class="form-control">
+                                    <f:selectItem itemValue = "1" itemLabel = "Sedán"/>
+                                    <f:selectItem itemValue = "2" itemLabel = "Hatchback"/>
+                                    <f:selectItem itemValue = "3" itemLabel = "SUV"/>
+                                    <f:selectItem itemValue = "4" itemLabel = "Pick"/>
+                                    <f:selectItem itemValue = "5" itemLabel = "Minivan"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <br></br>  
+                        <br></br>
+                            <center>
+                                <div>
+                                    <h:commandButton value="ENVIAR" id="btn"  class="btn btn-success btn-lg" />
+                                </div>
+                                <br></br>
+                            </center>
+                    </div>                
+                </div>
+            </div>
+            </h:form>
+        </center>
+
+        <ui:include src="/modules/footer.xhtml" />
+
+    </h:body>
+</html>
