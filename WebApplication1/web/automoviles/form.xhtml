@@ -21,7 +21,7 @@
                             <br></br>
                             <div class="col-md-8">
                                 <h:message for="marca" class="alert alert-danger" />
-                                Marca: <h:inputText id="marca" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                                Marca: <h:inputText id="marca" value="#{automovilController.automovil.marca}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
                             <br></br>
                             <div class="col-md-8">
                                 <h:message for="modelo" class="alert alert-danger" />
-                                Modelo: <h:inputText  id="modelo" class="form-control" required="true" requiredMessage="Ingresa modelo"/>
+                                Modelo: <h:inputText  id="modelo" value="#{automovilController.automovil.modelo}" class="form-control" required="true" requiredMessage="Ingresa modelo"/>
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@
                             <br></br>
                             <div class="col-md-8">
                                 <h:message for="color" class="alert alert-danger" />
-                                Color: <h:inputText id="color" class="form-control" required="true" requiredMessage="Ingresa color"/>
+                                Color: <h:inputText id="color" value="#{automovilController.automovil.color}" class="form-control" required="true" requiredMessage="Ingresa color"/>
                             </div>
                         </div>
 
@@ -45,8 +45,8 @@
                             <br></br>
                             <div class="col-md-8">
                                 <h:message for="anio" class="alert alert-danger" />
-                                Año: <h:inputText  id="anio"  maxlength="4" class="form-control" validatorMessage=" Año no valido" required="true" requiredMessage="Ingresa year">
-                                                    <f:validateLongRange minimum="1920" maximum="2000" />
+                                Año: <h:inputText  id="anio" value="#{automovilController.automovil.ano}" maxlength="4" class="form-control" validatorMessage=" Año no valido" required="true" requiredMessage="Ingresa year">
+                                                    
                                                    </h:inputText>
                             </div>
                         </div>
@@ -55,13 +55,13 @@
                             <br></br>
                             <div class="col-md-8">
                                 Clases:
-                                <h:selectOneMenu id="clases" class="form-control">
-                                    <f:selectItem itemValue = "1" itemLabel = "Autobús"/>
-                                    <f:selectItem itemValue = "2" itemLabel = "Automóvil"/>
-                                    <f:selectItem itemValue = "3" itemLabel = "Cabezal"/>
-                                    <f:selectItem itemValue = "4" itemLabel = "Camión"/>
-                                    <f:selectItem itemValue = "5" itemLabel = "Cuadrimoto"/>
-                                    <f:selectItem itemValue = "6" itemLabel = "Microbús"/>
+                                <h:selectOneMenu id="clases" value="#{automovilController.automovil.clase}" class="form-control">
+                                    <f:selectItem itemValue = "Autobus" itemLabel = "Autobús"/>
+                                    <f:selectItem itemValue = "Automovil" itemLabel = "Automóvil"/>
+                                    <f:selectItem itemValue = "Cabezal" itemLabel = "Cabezal"/>
+                                    <f:selectItem itemValue = "Camion" itemLabel = "Camión"/>
+                                    <f:selectItem itemValue = "Cuadrimoto" itemLabel = "Cuadrimoto"/>
+                                    <f:selectItem itemValue = "Microbus" itemLabel = "Microbús"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>
@@ -70,8 +70,8 @@
                             <br></br>
                             <div class="col-md-8">
                                 <h:message for="placa" class="alert alert-danger" />
-                                Numero de Placa: <h:inputText  id="placa"  maxlength="17"  class="form-control" validatorMessage="numero de placa incorrecto" required="true" requiredMessage="Ingresa numero de placa"> 
-                                                   <f:validateRegex pattern="^[0-9A-Z]{9}$" />
+                                Numero de Placa: <h:inputText  id="placa" value="#{automovilController.automovil.numPlaca}" maxlength="17"  class="form-control" validatorMessage="numero de placa incorrecto" required="true" requiredMessage="Ingresa numero de placa"> 
+                                                  
                                                   </h:inputText>
                             </div>
                         </div>
@@ -80,8 +80,8 @@
                             <br></br>
                             <div class="col-md-8">
                                 <h:message for="chasis" class="alert alert-danger" />
-                                Numero de Chasis: <h:inputText  id="chasis"  maxlength="17"  class="form-control" validatorMessage="numero de chasis incorrecto" required="true" requiredMessage="Ingresa numero de chasis"> 
-                                                    <f:validateRegex pattern="^[0-9A-Z]{17}$" />
+                                Numero de Chasis: <h:inputText  id="chasis" value="#{automovilController.automovil.numChasis}"  maxlength="17"  class="form-control" validatorMessage="numero de chasis incorrecto" required="true" requiredMessage="Ingresa numero de chasis"> 
+                                                    
                                                   </h:inputText>
                             </div>
                         </div>
@@ -90,8 +90,8 @@
                             <br></br>
                             <div class="col-md-8">
                                 <h:message for="motor" class="alert alert-danger" />
-                                Numero de Motor: <h:inputText id="motor" maxlength="10" class="form-control" validatorMessage="Numero de motor incorrecta" required="true" requiredMessage="Ingresa numero de motor">
-                                                    <f:validateRegex pattern="^[0-9A-Z]{10}$" />
+                                Numero de Motor: <h:inputText id="motor" value="#{automovilController.automovil.numMotor}" maxlength="10" class="form-control" validatorMessage="Numero de motor incorrecta" required="true" requiredMessage="Ingresa numero de motor">
+                                                    
                                                  </h:inputText>
                             </div>
                         </div>
@@ -100,12 +100,12 @@
                             <br></br>
                             <div class="col-md-8">
                                 Tipo de Carro:
-                                <h:selectOneMenu id="carro" class="form-control">
-                                    <f:selectItem itemValue = "1" itemLabel = "Sedán"/>
-                                    <f:selectItem itemValue = "2" itemLabel = "Hatchback"/>
-                                    <f:selectItem itemValue = "3" itemLabel = "SUV"/>
-                                    <f:selectItem itemValue = "4" itemLabel = "Pick"/>
-                                    <f:selectItem itemValue = "5" itemLabel = "Minivan"/>
+                                <h:selectOneMenu id="carro" value="#{automovilController.automovil.tipoCarro}" class="form-control">
+                                    <f:selectItem itemValue = "Sedan" itemLabel = "Sedán"/>
+                                    <f:selectItem itemValue = "Hatchback" itemLabel = "Hatchback"/>
+                                    <f:selectItem itemValue = "SUV" itemLabel = "SUV"/>
+                                    <f:selectItem itemValue = "Pick" itemLabel = "Pick"/>
+                                    <f:selectItem itemValue = "Minivan" itemLabel = "Minivan"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                         <br></br>
                             <center>
                                 <div>
-                                    <h:commandButton value="ENVIAR" id="btn"  class="btn btn-success btn-lg" />
+                                    <h:commandButton value="ENVIAR" id="btn" action="#{automovilController.insert()}" class="btn btn-success btn-lg" />
                                 </div>
                                 <br></br>
                             </center>

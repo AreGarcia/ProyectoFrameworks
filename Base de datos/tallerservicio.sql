@@ -11,7 +11,10 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema tallerservicio
 -- -----------------------------------------------------
+<<<<<<< HEAD:ProyectoFramework.sql
 CREATE DATABASE `tallerservicio`;
+=======
+>>>>>>> 4014e21562a9e8a655c5414e369a03e9bc63a718:Base de datos/tallerservicio.sql
 CREATE SCHEMA IF NOT EXISTS `tallerservicio` DEFAULT CHARACTER SET utf8 ;
 USE `tallerservicio` ;
 
