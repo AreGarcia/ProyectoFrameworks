@@ -37,7 +37,7 @@ public class AutomovilController {
     public String insert() throws SQLException{
         automovilDAO.insert(automovil);
         
-        return "/automoviles/list";
+        return "/admin/clientes/list";
     }
     
     

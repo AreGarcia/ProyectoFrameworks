@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"></link>      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Administrador</title>
+    <h:body>
+    <!--
+Verifica si hay alguiel logueado
+--> 
+#{loginMB.verificar()}
+       
+<!--
+Menú
+-->  
+<ui:include src="menu.xhtml" />
+  
+        <center>
+            <h:form style="margin-left: auto; margin-right: auto; width: 20%; text-align: center; height: 25%;">
+            <div class="card border-primary mb-3" style="max-width: 50rem;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Registrar Automovil</h1>
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="dui" class="alert alert-danger" />
+                                DUI: <h:inputText id="dui" value="#{automovilController.automovil.duiUsuario}" class="form-control" required="true" requiredMessage="Ingrese el Dui"/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="marca" class="alert alert-danger" />
+                                Marca: <h:inputText id="marca" value="#{automovilController.automovil.marca}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="modelo" class="alert alert-danger" />
+                                Modelo: <h:inputText  id="modelo" value="#{automovilController.automovil.modelo}" class="form-control" required="true" requiredMessage="Ingresa modelo"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="color" class="alert alert-danger" />
+                                Color: <h:inputText id="color" value="#{automovilController.automovil.color}" class="form-control" required="true" requiredMessage="Ingresa color"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="anio" class="alert alert-danger" />
+                                Año: <h:inputText  id="anio" value="#{automovilController.automovil.ano}" maxlength="4" class="form-control" validatorMessage=" Año no valido" required="true" requiredMessage="Ingresa year">
+                                                    
+                                                   </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                Clases:
+                                <h:selectOneMenu id="clases" value="#{automovilController.automovil.clase}" class="form-control">
+                                    <f:selectItem itemValue = "Autobus" itemLabel = "Autobús"/>
+                                    <f:selectItem itemValue = "Automovil" itemLabel = "Automóvil"/>
+                                    <f:selectItem itemValue = "Cabezal" itemLabel = "Cabezal"/>
+                                    <f:selectItem itemValue = "Camion" itemLabel = "Camión"/>
+                                    <f:selectItem itemValue = "Cuadrimoto" itemLabel = "Cuadrimoto"/>
+                                    <f:selectItem itemValue = "Microbus" itemLabel = "Microbús"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="placa" class="alert alert-danger" />
+                                Numero de Placa: <h:inputText  id="placa" value="#{automovilController.automovil.numPlaca}" maxlength="17"  class="form-control" validatorMessage="numero de placa incorrecto" required="true" requiredMessage="Ingresa numero de placa"> 
+                                                  
+                                                  </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="chasis" class="alert alert-danger" />
+                                Numero de Chasis: <h:inputText  id="chasis" value="#{automovilController.automovil.numChasis}"  maxlength="17"  class="form-control" validatorMessage="numero de chasis incorrecto" required="true" requiredMessage="Ingresa numero de chasis"> 
+                                                    
+                                                  </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="motor" class="alert alert-danger" />
+                                Numero de Motor: <h:inputText id="motor" value="#{automovilController.automovil.numMotor}" maxlength="10" class="form-control" validatorMessage="Numero de motor incorrecta" required="true" requiredMessage="Ingresa numero de motor">
+                                                    
+                                                 </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                Tipo de Carro:
+                                <h:selectOneMenu id="carro" value="#{automovilController.automovil.tipoCarro}" class="form-control">
+                                    <f:selectItem itemValue = "Sedan" itemLabel = "Sedán"/>
+                                    <f:selectItem itemValue = "Hatchback" itemLabel = "Hatchback"/>
+                                    <f:selectItem itemValue = "SUV" itemLabel = "SUV"/>
+                                    <f:selectItem itemValue = "Pick" itemLabel = "Pick"/>
+                                    <f:selectItem itemValue = "Minivan" itemLabel = "Minivan"/>
+                                </h:selectOneMenu>
+                            </div>                         
+                        </div>
+                        
+                        <div><div class="col-md-12" style="visibility: hidden"><h:commandButton/></div></div>
+                        
+                        <div>                             
+                                    <div class="col-md-12">
+                                    <h:commandButton value="ENVIAR" id="btn" action="#{automovilController.insert()}" class="btn btn-success btn-lg" />
+                                    </div>
+                         </div>
+                        
+                            
+                    </div>                
+                </div>
+            </div>
+            </h:form>
+        </center>
+
+      
+    </h:body>
+</html>
