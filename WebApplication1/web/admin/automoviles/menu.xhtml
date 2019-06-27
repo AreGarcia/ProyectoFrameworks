@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 
@@ -29,15 +24,15 @@ Verifica si hay alguiel logueado
                 <div class="collapse navbar-collapse" id="navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="../home.xhtml">Inicio</a></li>
-                       <li class="dropdown">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ver<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Ver Servicios</a> </li>
-                                <li><a href="#">Ver Clientes</a> </li>
-                                <li><a href="../clientes/list.xhtml">Ver Vehiculos</a> </li>
+                                <li><a href="../servicios/list.xhtml">Ver Reparaciones</a> </li>
+                                <li><a href="../clientes/list.xhtml">Ver Usuarios</a> </li>
+                                <li><a href="list.xhtml">Ver Vehiculos</a> </li>
                             </ul>
                         </li>
-                        <li><a href="#">Registrar cliente</a></li>
+                        <li><a href="../clientes/form.xhtml">Registrar cliente</a></li>
                         <li><a href="form.xhtml">Agregar vehiculo</a></li>                          
                     </ul>
 
@@ -58,7 +53,7 @@ Se negara la vista en el caso que un usuario que no sea administrador llegue a e
         <c:if test="#{loginMB.autenticado.rol != 'Administrador'}">
         <h:form style="margin-left: auto; margin-right: auto; width: 20%; text-align: center; height: 25%; background-color: #E4E4E4" class="form-control">
             <h3 style="color: #008AD4;">Acceso denegado!</h3><br></br>
-            <h6 style="color: #008AD4;"><a href="../../usuario/home.xhtml">Regresar</a></h6><br></br>
+            <h6 style="color: #008AD4;"><a href="../../admin/home.xhtml">Regresar</a></h6><br></br>
         </h:form>
         </c:if>
 </html>

@@ -58,5 +58,20 @@ public class AutomovilDAO extends AppConnection {
         this.close();
         return automovilList;
     }
+    
+    public List<Automovil> fyndAll2() throws SQLException {
+        List<Automovil> serviciosList = new ArrayList();
+
+        this.connect();
+        preparedStatement = connection.prepareStatement("select Nombre_Servicio from servicios ");
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Automovil automovil = new Automovil();
+            automovil.setServicios(resultSet.getString("Nombre_Servicio"));
+            serviciosList.add(automovil);
+        }
+        this.close();
+        return serviciosList;
+    }
 
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Cotizacion</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../Templates/TemplateUsuario.xhtml">
+            <ui:define name="content">
+
+                <center>
+                    <h:form>
+                        <div class="card border-primary mb-3" style="max-width: 50rem;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h:graphicImage value = "../../resources/images/cotizacion.png"  />
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Servicio: " ></h:outputLabel>
+                                            <h:inputText value="#{tecnicoMB.tecnico.idServicio}" disabled="true" style="text-align: center;"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="NumChasis: " ></h:outputLabel>
+                                            <h:inputText value="#{tecnicoMB.tecnico.numChasis}" disabled="true" style="text-align: center;"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Tipo de Pintura: " ></h:outputLabel>
+                                            <h:inputText value="#{tecnicoMB.tecnico.idTipo_Pintura}" disabled="true" style="text-align: center;"/>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Tipo de Enderezado: " ></h:outputLabel>
+                                            <h:inputText value="#{tecnicoMB.tecnico.idTipo_Enderezado}" disabled="true" style="text-align: center;"/>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Color: " ></h:outputLabel><br></br>
+                                            <h:inputText value="#{tecnicoMB.tecnico.color}" disabled="true" style="text-align: center;"/>
+                                        </div>
+
+                                    </div>
+
+                                </div>   
+
+                                <div class="col-md-6">
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Tecnico: " ></h:outputLabel>
+                                            <h:inputText value="#{tecnicoMB.tecnico.tecnico}" disabled="true" style="text-align: center;"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Mano de Obra: " ></h:outputLabel>
+                                            <h:inputText value="#{tecnicoMB.tecnico.manoDeObra}" disabled="true" style="text-align: center;"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Estado: " ></h:outputLabel>
+                                            <h:inputText value="#{tecnicoMB.tecnico.estado}" disabled="true" style="text-align: center;"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <br></br>
+                                        <div class="col-md-8 date">                                   
+                                            <h:outputLabel value="Total:    " ></h:outputLabel><br></br>
+                                            <h:inputText value="#{tecnicoMB.tecnico.total}" disabled="true" style="text-align: center;"/>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <br></br>
+                                    <h:commandButton value="Atras" action="servicio" class="btn btn-warning" /> 
+                                    
+                                    <h:commandButton value="Ingresar" action="#{tecnicoMB.insertTec()}" class="btn btn-success"  style="margin-left: 10px;"/> 
+                                    <br></br>
+                                    <br></br>
+                                </div>
+                            </div>              
+                        </div>
+                    </h:form>
+                </center>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

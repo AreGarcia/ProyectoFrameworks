@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"></link>      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Tecnico</title>
+    </h:head>
+
+
+    <!--  
+    Verifica si hay alguiel logueado
+    --> 
+    #{loginMB.verificar()}
+
+    <!--
+    Menú
+    -->  
+
+    <ui:composition template="./../Templates/TemplateUsuario.xhtml">
+        <ui:define name="content">
+            <center>
+                <h:form>
+                    <div class="card border-primary mb-3" style="max-width: 80rem;">
+                        <div class="row">
+
+                            <div class="col-md-6" >
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8 date">                                   
+                                        Servicio:  <h:selectOneMenu id="servicio" value="#{tecnicoMB.tecnico.idServicio}" class="form-control">
+                                        <f:selectItems value="#{servicioMB.servicioList}"   var="ser" itemLabel="#{ser.nombre_Servicio}" itemValue="#{ser.idServicio}" />
+                                    </h:selectOneMenu>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8 date">
+                                        Num Chasis: <h:inputText id="chasis" value="#{tecnicoMB.tecnico.numChasis}" class="form-control"/>           
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8">
+                                        Tipo de Pintura: 
+                                       <!-- <h:inputText id="tipoPint" value="#{tecnicoMB.tecnico.idTipo_Pintura}" class="form-control" required="true" />-->
+
+                                   <h:selectOneMenu id="tipoPint" value="#{tecnicoMB.tecnico.idTipo_Pintura}" class="form-control">
+                                        <f:selectItems value="#{pinturaMB.pinturaList}"   var="edo" itemLabel="#{edo.nombre}" itemValue="#{edo.tipo}" />
+                                    </h:selectOneMenu> 
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8 date">
+                                        Tipo de Enderazado:
+                                        <!--<h:inputText id="tipoEnde" value="#{tecnicoMB.tecnico.idTipo_Enderezado}" class="form-control" required="true" />-->
+                                    <h:selectOneMenu id="tipoEnde" value="#{tecnicoMB.tecnico.idTipo_Enderezado}" class="form-control">
+                                                <f:selectItems value="#{enderezadoMB.enderezadoList}"   var="ende" itemLabel="#{ende.nivel}" itemValue="#{ende.tipo}" />
+                                    </h:selectOneMenu>
+
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8">
+                                        <h:message for="colorito" class="alert alert-danger" />
+                                        Color: <h:inputText id="colorito" class="form-control" value="#{tecnicoMB.tecnico.color}" required="true" requiredMessage="Ingresa el color"/>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8">
+                                        <h:message for="colorito" class="alert alert-danger" />
+                                        Tecnico: <h:inputText id="tecn" class="form-control" value="#{tecnicoMB.tecnico.tecnico}" required="true" requiredMessage="Ingresa el color"/>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8">
+                                        <h:message for="obra" class="alert alert-danger" />
+                                        Mano de Obra: <h:inputText  id="obra" value="#{tecnicoMB.tecnico.manoDeObra}" class="form-control" validatorMessage="Cantidad no valida" required="true" requiredMessage="Ingresar cantidad">
+                                            <f:validateLongRange minimum="0" maximum="9999" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8">
+                                        Estado:
+                                        <h:selectOneMenu id="estados" value="#{tecnicoMB.tecnico.estado}" class="form-control">
+                                            <f:selectItem itemValue = "Activo" itemLabel = "Activo"/>
+                                            <f:selectItem itemValue = "Inactivo" itemLabel = "Inactivo"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <br></br>
+                                    <div class="col-md-8">
+                                        <h:message for="total" class="alert alert-danger" />
+                                        Total: <h:inputText  id="Total" value="#{tecnicoMB.tecnico.total}"  class="form-control" validatorMessage="Cantidad no valida" required="true" requiredMessage="Ingresar cantidad">
+                                            <f:validateLongRange minimum="0" maximum="9999" />
+                                        </h:inputText>
+                                        <br></br>                                                                  
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <h:commandButton value="Ingresar" action="#{tecnicoMB.insertTec()}" class="btn btn-primary" /> 
+                                        <br></br> 
+                                        <br></br> 
+
+                                    </div>
+
+
+
+                                </div>
+
+                                <br></br>
+
+                            </div>
+
+                            <div class="col-md-5">
+
+
+                                <div class="border-primary">
+                                    <h3>Tipo de Enderezado</h3>
+                                    <b:dataTable class="center_content" value="#{enderezadoMB.enderezadoList}" var="enderezado" searching="false" info="false" paginated="false">
+
+                                        <b:dataTableColumn value="#{enderezado.tipo}" />
+                                        <b:dataTableColumn value="#{enderezado.nivel}" />
+                                        <b:dataTableColumn value="$#{enderezado.precio}" />         
+
+                                    </b:dataTable>
+                                </div>
+                                <br></br>
+                                <div class="border-primary">
+                                    <h3>Tipo de Pintura</h3>
+                                    <b:dataTable class="center_content" value="#{pinturaMB.pinturaList}" var="pintura" searching="false" info="false" paginated="false">
+
+                                        <b:dataTableColumn value="#{pintura.tipo}" />
+                                        <b:dataTableColumn value="#{pintura.nombre}" />
+                                        <b:dataTableColumn value="$#{pintura.precio}" />         
+
+                                    </b:dataTable>
+                                </div>
+
+                                <h:commandButton value="Contizar" action="cotizacion.xhtml" />
+                                <br></br>
+
+                            </div>                
+                        </div>
+                    </div>
+                </h:form>
+            </center>
+        </ui:define>
+
+    </ui:composition>  
+</html>

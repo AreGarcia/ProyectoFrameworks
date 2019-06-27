@@ -5,12 +5,11 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>      
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"></link>      
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Administrador</title>
+        <title>Admin-list Clientes</title>
     </h:head>
     <h:body>
 <!--
@@ -23,18 +22,22 @@ Menú
 --> 
 <ui:include src="menu.xhtml" />
 
-<div style="margin-left: auto; margin-right: auto; width: 50%; height: 25%;" class="form-control">
+<div style="margin-left: auto; margin-right: auto; width: 70%; height: 25%;" class="form-control">
     
-        <b:dataTable value="#{automovilController.automovilList}" var="automovil" >
+    <b:dataTable value="#{clienteController.clientesList}" var="cliente" >
         
-            <b:dataTableColumn value="#{automovil.numPlaca}" />
-            <b:dataTableColumn value="#{automovil.numChasis}" />
-            <b:dataTableColumn value="#{automovil.duiUsuario}" />
-            <b:dataTableColumn value="#{automovil.marca}" />
-            <b:dataTableColumn value="#{automovil.modelo}" />
-            <b:dataTableColumn value="#{automovil.color}" />           
-            
-        </b:dataTable>
+            <b:dataTableColumn value="#{cliente.dui}" />
+            <b:dataTableColumn value="#{cliente.user}" />
+            <b:dataTableColumn value="#{cliente.passwor}" />
+            <b:dataTableColumn value="#{cliente.rol}" />
+            <b:dataTableColumn value="#{cliente.nombreCom}" />
+            <b:dataTableColumn value="#{cliente.telefono}" />
+            <b:dataTableColumn value="#{cliente.correo}" />
+            <b:dataTableColumn value="#{cliente.celular}" />
+            <b:dataTableColumn value="#{cliente.estado}" />
+                         
+    </b:dataTable>
+    
 </div>    
     </h:body>
 </html>

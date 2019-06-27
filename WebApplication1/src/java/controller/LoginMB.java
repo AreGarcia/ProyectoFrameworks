@@ -47,7 +47,7 @@ public class LoginMB {
             if(autenticado.getRol().equalsIgnoreCase(Rol.ADMINISTRADOR))
             return "admin/home.xhtml?faces-redirect=true";
             if(autenticado.getRol().equalsIgnoreCase(Rol.TECNICO))
-            return "usuario/home.xhtml?faces-redirect=true";
+            return "tecnico/home.xhtml?faces-redirect=true";
             if(autenticado.getRol().equalsIgnoreCase(Rol.CLIENTE))
             return "cliente/home.xhtml?faces-redirect=true";
         }

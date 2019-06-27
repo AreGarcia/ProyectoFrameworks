@@ -6,6 +6,7 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import model.Automovil;
 import model.AutomovilDAO;
+import model.Clientes;
+import model.ClientesDAO;
 
 /**
  *
@@ -37,7 +40,7 @@ public class AutomovilController {
     public String insert() throws SQLException{
         automovilDAO.insert(automovil);
         
-        return "/admin/clientes/list";
+        return "/admin/automoviles/list";
     }
     
     
@@ -54,6 +57,32 @@ public class AutomovilController {
         
         return result;
         
+    }
+    
+    public List<Automovil> getServiciosList(){
+        
+        List<Automovil> result = null;
+        
+        
+        try {
+            result = automovilDAO.fyndAll2();
+        } catch (SQLException ex) {
+            Logger.getLogger(AutomovilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return result;
+        
+    }
+  
+    public List<String> clientes(String query) throws SQLException{
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List<String> duis = new ArrayList<>();
+        
+        for(Clientes c:clientesDAO.fyndClienteByDui(query)){
+            duis.add(c.getDui());
+        }
+        
+        return duis;
     }
     
         /**

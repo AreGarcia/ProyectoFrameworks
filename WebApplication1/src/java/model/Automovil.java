@@ -22,7 +22,25 @@ public class Automovil {
     private String numChasis;
     private String numMotor;
     private String tipoCarro;
+    
+    private String servicios;
 
+
+    /**
+     * @return the servicios
+     */
+    public String getServicios() {
+        return servicios;
+    }
+
+    /**
+     * @param servicios the servicios to set
+     */
+    public void setServicios(String servicios) {
+        this.servicios = servicios;
+    }
+    
+   
     /**
      * @return the duiUsuario
      */

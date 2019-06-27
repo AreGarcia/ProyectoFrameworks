@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>      
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"></link>      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Servicios</title>
+    </h:head>
+    <h:body>
+        <!--
+Verifica si hay alguiel logueado
+--> 
+#{loginMB.verificar()}     
+<!--
+Menú
+--> 
+<ui:include src="menu.xhtml" />
+        <div style="margin-left: auto; margin-right: auto; width: 70%; height: 25%;" class="form-control">
+            <h3>Lista</h3>
+            <b:dataTable class="center_content" value="#{tecnicoMB.tecnicoList}" var="tecnico">
+                <b:dataTableColumn value="#{tecnico.numChasis}" />
+                <b:dataTableColumn value="#{tecnico.idServicio}" />
+                <b:dataTableColumn value="#{tecnico.color}" />           
+                <b:dataTableColumn value="#{tecnico.manoDeObra}" />
+                <b:dataTableColumn value="#{tecnico.total}" />
+                <b:dataTableColumn value="#{tecnico.tecnico}" />
+                <b:dataTableColumn value="#{tecnico.estado}" />              
+                <b:dataTableColumn value="Acción">
+                 <h:commandButton action="#{tecnicoMB.Deletetec(tecnico.getIdServicio_Pintura)}" value="Delete">
+                     </h:commandButton>
+                 </b:dataTableColumn>     
+
+            </b:dataTable>
+        </div>
+    </h:body>
+</html>
+
