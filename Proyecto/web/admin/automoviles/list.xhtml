@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"></link>      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Admin-List Vehiculos</title>
+    </h:head>
+    <h:body>
+        <!--
+        Verifica si hay alguiel logueado
+        --> 
+        #{loginMB.verificar()}
+
+        <!--
+        Menú
+        --> 
+        <ui:include src="menu.xhtml" />
+
+        <div style="margin-left: auto; margin-right: auto; width: 95%; height: 25%;" class="form-control">
+                <h3><center>Lista de Vehiculos</center></h3>
+                 <a href="form.xhtml" class="btn btn-success ">Nuevo Vehiculo</a><br></br><br></br>
+                <b:dataTable value="#{automovilController.automovilList}" var="automovil" 
+                             fixedHeader="true"
+               scroll-size="400px"
+               scroll-x="false"
+               responsive="true"
+                             >
+                    <b:dataTableColumn value="#{automovil.duiUsuario}" />
+                    <b:dataTableColumn value="#{automovil.numPlaca}" />
+                    <b:dataTableColumn value="#{automovil.numChasis}" />
+                    <b:dataTableColumn value="#{automovil.marca}" />
+                    <b:dataTableColumn value="#{automovil.modelo}" />
+                    <b:dataTableColumn value="#{automovil.color}" />
+                    <b:dataTableColumn value="#{automovil.ano}" />
+                    <b:dataTableColumn value="#{automovil.clase}" />
+                    <b:dataTableColumn value="#{automovil.numMotor}" />
+                    <b:dataTableColumn value="#{automovil.tipoCarro}" />
+                    <b:dataTableColumn>
+                        <f:facet name="header">
+                           <h:outputText value="Acciones"></h:outputText>
+                        </f:facet>
+                        <b:form>
+                            <b:commandLink  style="margin-right:5px;"  onclick="$('.responsiveModalPseudoClass').modal();" action="#{automovilController.viewPropietario(automovil)}" class="btn btn-primary" value="Ver Propietario">
+                                <f:ajax execute="@form" render="data" />
+                            </b:commandLink>
+                            
+                            <b:commandLink  style="margin-right:5px;"  onclick="$('.responsiveModalPseudoClassEdit').modal();" 
+                                            action="#{automovilController.edit(automovil)}" class="btn btn-warning" value="Editar">
+                                <f:ajax render="formEditar" />
+                            </b:commandLink>
+                                                       
+                            <b:commandButton class="btn btn-danger" onclick="$('.responsiveModalPseudoClassDelete').modal('show')"
+                                             action="#{automovilController.fillDeleteForm(automovil.numChasis)}" value="Eliminar">
+                                <f:ajax render="formeliminar" />
+                            </b:commandButton>
+                        </b:form>
+                    </b:dataTableColumn>
+
+                </b:dataTable>
+                
+        </div> 
+
+        
+        <b:modal title="Propietario" styleClass="responsiveModalPseudoClass" id="responsiveModal" >
+            <b:panel id="data">
+             
+                <b><h:outputText value="Dui:"></h:outputText></b>    
+                #{automovilController.cliente.dui} 
+                <br></br>
+                
+                <b><h:outputText value="Nombre Completo:"></h:outputText> </b> 
+                #{automovilController.cliente.nombreCom} 
+                <br></br>
+              
+                <b><h:outputText value="Celular:"></h:outputText></b>   
+                #{automovilController.cliente.celular} 
+                <br></br>
+              
+                <b><h:outputText value="Correo Electronico:"></h:outputText></b>   
+                #{automovilController.cliente.correo} 
+                <br></br>
+            
+              <f:facet name="footer">
+                <b:button value="Cerrar" dismiss="modal" class="btn btn-warning" />
+              </f:facet>
+            </b:panel>
+        </b:modal>
+        
+        
+        <b:modal title="Editar Vehiculo" styleClass="responsiveModalPseudoClassEdit" id="responsiveModalEdit" >
+            
+            <b:form id="formEditar">
+            <b:panel id="dataEdit">
+            
+                <b><h:outputText value="Dui Propietario:"></h:outputText></b>
+                <b:inputText id="duiPropietario" value="#{automovilController.automovil.duiUsuario}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Numero de Placa:"></h:outputText></b>    
+                <b:inputText id="numPlaca" value="#{automovilController.automovil.numPlaca}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Numero de Chasis:"></h:outputText> </b>  
+                <h:inputText id="numChasis" value="#{automovilController.automovil.numChasis}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+              
+                <b><h:outputText value="Marca:"></h:outputText></b>    
+                <h:inputText id="marca" value="#{automovilController.automovil.marca}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Modelo:"></h:outputText></b>    
+                <h:inputText id="modelo" value="#{automovilController.automovil.modelo}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Color:"></h:outputText></b>    
+                <h:inputText id="color" value="#{automovilController.automovil.color}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Ano:"></h:outputText></b>    
+                <h:inputText id="ano" value="#{automovilController.automovil.ano}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Clase:"></h:outputText></b>    
+                <h:inputText id="clase" value="#{automovilController.automovil.clase}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Numero Motor:"></h:outputText></b>    
+                <h:inputText id="numMotor" value="#{automovilController.automovil.numMotor}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="Tipo de Carro:"></h:outputText></b>    
+                <h:inputText id="tipoCarro" value="#{automovilController.automovil.tipoCarro}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+              <f:facet name="footer">
+               <center>
+                <b:commandButton  action="#{automovilController.editar()}" 
+                                  oncomplete="PF('responsiveModalPseudoClassEdit').hide():" 
+                                  class="btn btn-success" value="Actualizar" style="margin-right:10px;">
+                </b:commandButton >  
+                
+                <b:button value="Cerrar" dismiss="modal" class="btn btn-warning" />
+               </center>   
+              </f:facet>
+                
+            </b:panel>
+            </b:form>
+        </b:modal>
+        
+        <b:modal title="Eliminar Vehiculo" styleClass="responsiveModalPseudoClassDelete" id="responsiveModalDelete" >
+            <b:panel id="dataDelete">
+             
+                <b><h1>Esta seguro que desea  eliminar este vehiculo ?</h1></b>   
+                <br></br>
+                
+              <f:facet name="footer">
+                  <b:form id="formeliminar">
+                     <center>
+                        <h:inputHidden value="#{automovilController.chasisDelete}" />
+                        <b:commandButton  style="margin-right:10px;" action="#{automovilController.DeleteAutomovilString()}" oncomplete="PF('responsiveModalPseudoClassDelete').hide():" class="btn btn-success" value="Si"></b:commandButton >
+                        <b:button value="No" dismiss="modal" class="btn btn-warning"  />
+                     </center> 
+                  </b:form>    
+              </f:facet>
+            </b:panel>
+        </b:modal>
+        
+    </h:body>
+</html>
+

@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>      
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"></link>      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Admin-list Tecnicos</title>
+    </h:head>
+    <h:body>
+        <!--
+        Verifica si hay alguiel logueado
+        --> 
+        #{loginMB.verificar()}
+
+        <!--
+        Menú
+        --> 
+        <ui:include src="menu.xhtml" />
+
+        <div style="margin-left: auto; margin-right: auto; width: 90%; height: 25%;" class="form-control">
+            <h3><center>Lista de Tecnicos</center></h3>
+            <a href="../automoviles/form.xhtml" class="btn btn-success ">Asignar Vehiculo</a><br></br><br></br>
+            <b:dataTable value="#{tecnicoMB.tecnicosCompleteList}" var="tecnicos" >
+
+                    <b:dataTableColumn value="#{tecnicos.dui}" />
+                    <b:dataTableColumn value="#{tecnicos.user}" />
+                    <b:dataTableColumn value="#{tecnicos.password}" />
+                    <b:dataTableColumn value="#{tecnicos.rol}" />
+                    <b:dataTableColumn value="#{tecnicos.nombreCom}" />
+                    <b:dataTableColumn value="#{tecnicos.telefono}" />
+                    <b:dataTableColumn value="#{tecnicos.correo}" />
+                    <b:dataTableColumn value="#{tecnicos.celular}" />
+                    <b:dataTableColumn value="#{tecnicos.estado}" />
+                   
+                    <b:dataTableColumn>
+                        <f:facet name="header">
+                           <h:outputText value="Acciones"></h:outputText>
+                        </f:facet>
+                        <b:form>
+                           
+                            <b:commandButton class="btn btn-danger" onclick="$('.responsiveModalPseudoClassDelete').modal('show')"
+                                             action="#{adminController.fillDeleteForm(tecnicos.dui)}" value="Eliminar">
+                                <f:ajax render="formeliminar" />
+                            </b:commandButton>
+                            
+                            <b:commandLink  style="margin-right:10px;"  onclick="$('.responsiveModalPseudoClassEdit').modal();" 
+                                            action="#{adminController.edit(tecnicos)}" class="btn btn-warning" value="Editar">
+                                <f:ajax render="formEditar" />
+                            </b:commandLink>
+                          
+                        </b:form>
+                    </b:dataTableColumn>
+
+            </b:dataTable>
+            
+            <b:modal title="Eliminar Vehiculo" styleClass="responsiveModalPseudoClassDelete" id="responsiveModalDelete" >
+            <b:panel id="dataDelete">
+             
+                <b><h1>Esta seguro que desea  eliminar tecnico ?</h1></b>   
+                <br></br>
+                
+              <f:facet name="footer">
+                  <b:form id="formeliminar">
+                      <h:inputText value="#{adminController.duiDelete}" />
+                      <b:commandButton  action="#{adminController.deleteTec()}" oncomplete="PF('responsiveModalPseudoClassDelete').hide():" class="btn btn-success" value="Si"></b:commandButton >
+                    <b:button value="No" dismiss="modal" class="btn btn-warning" />
+                  </b:form>    
+              </f:facet>
+              
+            </b:panel>
+        </b:modal>
+            
+            
+              <b:modal title="Editar cliente" styleClass="responsiveModalPseudoClassEdit" id="responsiveModalEdit" >
+            
+             <h:form id="formEditar">
+            <b:panel id="dataEdit">
+            
+                <b><h:outputText value="Dui Propietario:"></h:outputText></b>
+                <h:inputHidden value="#{adminController.clientes.dui}"/>
+                <h:outputText id="duiPropietario" value="#{adminController.clientes.dui}"  class="form-control" />
+                <br></br>
+                
+                <b><h:outputText value="nombre completo:"></h:outputText></b>    
+                <b:inputText id="numPlaca" value="#{adminController.clientes.nombreCom}" class="form-control" required="true" requiredMessage="ingrese nombre completo"/>
+                <br></br>
+                
+                <b><h:outputText value="Numero de telefono:"></h:outputText> </b>  
+                <h:inputText id="numChasis" value="#{adminController.clientes.telefono}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+              
+                <b><h:outputText value="correo:"></h:outputText></b>    
+                <h:inputText id="marca" value="#{adminController.clientes.correo}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="numero de celular:"></h:outputText></b>    
+                <h:inputText id="modelo" value="#{adminController.clientes.celular}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="nombre de usuario:"></h:outputText></b>    
+                <h:inputText id="color" value="#{adminController.clientes.user}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="password:"></h:outputText></b>    
+                <h:inputSecret redisplay="true"  id="ano" value="#{adminController.clientes.password}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="rol :"></h:outputText></b>    
+                <h:inputText id="clase" value="#{adminController.clientes.rol}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+                <b><h:outputText value="estado:"></h:outputText></b>    
+                <h:inputText id="numMotor" value="#{adminController.clientes.estado}" class="form-control" required="true" requiredMessage="Ingresa marca"/>
+                <br></br>
+                
+
+                
+              <f:facet name="footer">
+                
+                <b:commandButton  action="#{adminController.editarTec(adminController.clientes.dui)}" 
+                                  oncomplete="PF('responsiveModalPseudoClassEdit').hide():" 
+                                  class="btn btn-success" value="Actualizar">
+                </b:commandButton >  
+                
+                <b:button value="Cerrar" dismiss="modal" class="btn btn-warning" />
+                  
+              </f:facet>
+                
+            </b:panel>
+            </h:form>
+        </b:modal>
+
+        </div>    
+    </h:body>
+</html>
+
+

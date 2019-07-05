@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"></link>      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Admin-form Clientes</title>
+    </h:head>
+    
+    <h:body>
+<!--
+Verifica si hay alguiel logueado
+--> 
+#{loginMB.verificar()}
+       
+<!--
+Menú
+-->  
+<ui:include src="menu.xhtml" />
+<center>
+     <h:form style="margin-left: auto; margin-right: auto; width: 20%; text-align: center; height: 25%;">
+            <div class="card border-primary mb-3" style="max-width: 50rem;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Registro de Usuarios</h1>
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="dui" class="alert alert-danger" />
+                                Dui: <h:inputText id="dui" value="#{adminController.clientes.dui}" class="form-control" required="true" requiredMessage="Ingrese el Dui"/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="nombre" class="alert alert-danger" />
+                                Nombre Completo: <h:inputText  id="anio" value="#{adminController.clientes.nombreCom}" class="form-control" required="true" requiredMessage="Ingresa el nombre">
+                                                    
+                                                   </h:inputText>
+                            </div>
+                        </div>
+
+                       
+                        
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="telefono" class="alert alert-danger" />
+                                Numero de telefono: <h:inputText  id="telefono" value="#{adminController.clientes.telefono}" maxlength="9"  class="form-control" validatorMessage="numero de telefono incorrecto" required="true" requiredMessage="Ingresa numero de placa"> 
+                                                  
+                                                  </h:inputText>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="correo" class="alert alert-danger" />
+                                Correo: <h:inputText  id="chasis" value="#{adminController.clientes.correo}"    class="form-control" validatorMessage="correo incorrecto" required="true" requiredMessage="Ingresa su correo"> 
+                                                    
+                                                  </h:inputText>
+                                
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="celular" class="alert alert-danger" />
+                                Numero de celular: <h:inputText id="motor" value="#{adminController.clientes.celular}" maxlength="9" class="form-control" validatorMessage="Numero de motor incorrecta" required="true" requiredMessage="Ingresa numero de motor">
+                                                    
+                                                 </h:inputText>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="nombre de usuario" class="alert alert-danger" />
+                                Usuario <h:inputText id="user" value="#{adminController.clientes.user}" class="form-control" required="true" requiredMessage="Ingrese nombre usuario"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                <h:message for="passwor" class="alert alert-danger" />
+                               Contraseña: <h:inputSecret  id="modelo" value="#{adminController.clientes.password}" class="form-control" required="true" requiredMessage="Ingresa tu passwor"/>
+                            </div>
+                        </div>
+
+
+
+                        <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                Estado:
+                                <h:selectOneMenu id="estado" value="#{adminController.clientes.estado}" class="form-control">
+                                    <f:selectItem itemValue = "Activo" itemLabel = "Activo"/>
+                                    <f:selectItem itemValue = "De baja" itemLabel = "De baja"/>
+                                    <f:selectItem itemValue = "Inactivo" itemLabel = "Inactivo"/>
+                                </h:selectOneMenu>
+                            </div>                         
+                        </div>
+                         <div>
+                            <br></br>
+                            <div class="col-md-12">
+                                Rol :
+                                <h:selectOneMenu id="clases" value="#{adminController.clientes.rol}" class="form-control">
+                                    <f:selectItem itemValue = "Cliente" itemLabel = "Cliente"/>
+                                    <f:selectItem itemValue = "Tecnico" itemLabel = "Tecnico"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        
+                        
+                        <div><div class="col-md-12" style="visibility: hidden"><h:commandButton/></div></div>
+                        
+                        <div>                             
+                                    <div class="col-md-12">
+                                        <h:commandButton value="ENVIAR" id="btn" action="#{adminController.insert()}" class="btn btn-success btn-lg" />
+                                    </div>
+                         </div>
+                        
+                            
+                    </div>                
+                </div>
+            </div>
+            </h:form>
+</center>
+
+    
+    </h:body>
+</html>
+
